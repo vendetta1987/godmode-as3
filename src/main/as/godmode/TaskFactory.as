@@ -97,12 +97,11 @@ public class TaskFactory
     }
 
     /** Runs all children concurrently until one fails */
-    public function parallel (...children) :ParallelSelector {
-        const TYPE :int = ParallelSelector.ALL_SUCCESS;
+    public function parallel (type:int, ...children) :ParallelSelector {
 
         // reuse existing task if possible
         if (children.length > 0 && children[0] is ParallelSelector &&
-            ParallelSelector(children[0]).type == TYPE) {
+            ParallelSelector(children[0]).type == type) {
 
             const parallel :ParallelSelector = children[0];
             for (var ii :int = 1; ii < children.length; ++ii) {
@@ -111,7 +110,7 @@ public class TaskFactory
             return parallel;
 
         } else {
-            return new ParallelSelector(TYPE, taskVector(children));
+            return new ParallelSelector(type, taskVector(children));
         }
     }
 
