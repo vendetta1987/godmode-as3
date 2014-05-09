@@ -10,6 +10,7 @@ public class NoOpTask extends BehaviorTask
 {
     public static const SUCCESS :NoOpTask = new NoOpTask(BehaviorTask.SUCCESS);
     public static const FAIL :NoOpTask = new NoOpTask(BehaviorTask.FAIL);
+	public static const RUNNING :NoOpTask = new NoOpTask(BehaviorTask.RUNNING);
 
     public function NoOpTask (status :int) {
         _status = status;
